@@ -12,7 +12,7 @@ export class NetworkService {
     }
 
     getMerkleProofForZkEvm(network: string, networkID: number, depositCount: number) {
-        const url = this.createUrlForZkEvm(network, `merkle-proof?net_id=${networkID}&deposit_cnt=${depositCount}`);
+        const url = `merkle-proof?net_id=${networkID}&deposit_cnt=${depositCount}`
         console.log("getMerkleProofForZkEvm url is:", url);
         return this.httpRequest.get<any>(url).then(result => {
             return result.proof;
@@ -20,7 +20,7 @@ export class NetworkService {
     }
 
     getBridgeTransactionDetails(network: string, networkID: number, depositCount: number) {
-        const url = this.createUrlForZkEvm(network, `bridge?net_id=${networkID}&deposit_cnt=${depositCount}`);
+        const url = `bridge?net_id=${networkID}&deposit_cnt=${depositCount}`;
         return this.httpRequest.get<any>(url).then(result => {
             return result.deposit;
         });
