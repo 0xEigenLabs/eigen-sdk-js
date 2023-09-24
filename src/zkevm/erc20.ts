@@ -104,6 +104,22 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
+     * get Mapped Token Info
+     *
+     * @param {number} network
+     * @returns
+     * @memberof ERC20
+     */
+    getMappedTokenInfo(network: number) {
+        if (this.isEtherToken()) {
+            return ADDRESS_ZERO;
+        }
+
+        const bridge = this.contractParam.isParent ? this.parentBridge : this.childBridge;
+        return bridge.getMappedTokenInfo(network, this.contractParam.address)
+    }
+
+    /**
      * Approve given amount of tokens for user
      *
      * @param {TYPE_AMOUNT} amount
