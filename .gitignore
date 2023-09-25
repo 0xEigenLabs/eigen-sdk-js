@@ -1,0 +1,14 @@
+node_modules
+lib
+.DS_Store
+*.log
+dump.rdb
+
+*.env
+bundle.js
+dist
+
+*.tgz
+config.json
+.nuxt
+docs
