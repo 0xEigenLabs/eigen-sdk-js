@@ -20,6 +20,7 @@ export class MerkleTree {
 
         this.leaves = leaves.concat(
             Array.from(
+                // tslint:disable-next-line
                 Array(Math.pow(2, depth) - leaves.length),
                 () => utils.zeros(32)
             )

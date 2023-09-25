@@ -12,7 +12,7 @@ export class NetworkService {
     }
 
     getMerkleProofForZkEvm(network: string, networkID: number, depositCount: number) {
-        const url = `merkle-proof?net_id=${networkID}&deposit_cnt=${depositCount}`
+        const url = `merkle-proof?net_id=${networkID}&deposit_cnt=${depositCount}`;
         console.log("getMerkleProofForZkEvm url is:", url);
         return this.httpRequest.get<any>(url).then(result => {
             return result.proof;

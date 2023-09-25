@@ -22,6 +22,7 @@
     "prepublishOnly": "npm run deploy",
     "build:test": "npm run build:pack && npm run test",
     "test": "cd test && npm run install:lib:test",
+    "lint": "tslint src/**/*.ts",
     "debug": "npm run build:pack && cd test && npm run install:lib:debug",
     "testrpc": "ganache-cli --mnemonic 'clock radar mass judge dismiss just intact mind resemble fringe diary casino' --gasLimit 13000000"
   },
