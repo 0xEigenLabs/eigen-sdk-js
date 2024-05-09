@@ -45,7 +45,9 @@
   "dependencies": {
     "@ethereumjs/block": "^3.6.2",
     "@maticnetwork/maticjs": "^3.8.2",
+    "@truffle/hdwallet-provider": "^2.1.15",
     "@types/web3": "^1.0.19",
+    "dotenv": "^16.4.5",
     "ethereumjs-util": "^7.1.4",
     "merkle-patricia-tree": "^4.2.4",
     "node-fetch": "^2.6.1"

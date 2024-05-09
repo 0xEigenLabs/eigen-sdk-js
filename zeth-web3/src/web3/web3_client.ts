@@ -1,8 +1,7 @@
 import { Web3Contract } from "./eth_contract";
 import Web3 from "web3";
-import { Transaction } from "web3/eth/types";
 import { AbstractProvider } from "web3-core";
-import { doNothing, TransactionWriteResult } from "../helpers";
+import { TransactionWriteResult } from "../helpers";
 import { BaseWeb3Client, Logger, IBlockWithTransaction, IJsonRpcRequestPayload, IJsonRpcResponse, ITransactionRequestConfig, ITransactionData, ITransactionReceipt, ERROR_TYPE, IError } from "@maticnetwork/maticjs";
 import { zethTxRequestConfigToWeb3, web3ReceiptToZethReceipt, web3TxToZethTx } from "../utils";
 
@@ -49,8 +48,8 @@ export class Web3Client extends BaseWeb3Client {
         return this.web3_.eth.getTransactionCount(address, blockNumber);
     }
 
-    async getAccounts() {
-        return this.web3_.eth.getAccounts();
+    getAccounts() {
+        return (this.web3_.eth.getAccounts as any);
     }
 
     getChainId() {
@@ -89,7 +88,7 @@ export class Web3Client extends BaseWeb3Client {
     }
 
     getBalance(address) {
-        return this.web3_.eth.getBalance(address);
+        return (this.web3_.eth.getBalance(address) as any);
     }
 
     getBlockWithTransaction(blockHashOrBlockNumber) {
@@ -112,14 +111,14 @@ export class Web3Client extends BaseWeb3Client {
     }
 
     signTypedData(signer, typedData) {
-        return this.sendRPCRequest({
+        return (this.sendRPCRequest({
             jsonrpc: '2.0',
             method: 'eth_signTypedData_v4',
             params: [signer, typedData],
             id: new Date().getTime()
         }).then(payload => {
             return String(payload.result);
-        });
+        }) as any);
     }
 
     encodeParameters(params: any[], types: any[]) {
@@ -135,7 +134,7 @@ export class Web3Client extends BaseWeb3Client {
     }
 
     hexToNumber(value) {
-        return Web3.utils.hexToNumber(value);
+        return (Web3.utils.hexToNumber(value) as number);
     }
 
     hexToNumberString(value) {
