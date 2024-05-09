@@ -83,11 +83,11 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
     }
 
     getBlock(blockNum: any, isParent?: boolean){
-        return this.client.getBlock(blockNum, isParent)
+        return this.client.getBlock(blockNum, isParent);
     }
 
     eigenGetBlock(blockNum: any, isParent?: boolean){
-        return this.client.getBlock(blockNum, isParent)
+        return this.client.getBlock(blockNum, isParent);
     }
     
     private getContracts_() {

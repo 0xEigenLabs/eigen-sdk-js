@@ -4,7 +4,7 @@ import { ABIManager } from "../utils";
 import { Logger } from "./logger";
 import { utils } from "..";
 
-import { Web3Client as Web3} from "../../zeth-web3/src/web3"
+import { Web3Client } from "../../zeth-web3/src/web3";
 
 const chainIdToConfigPath = {
     1: 'Main',
@@ -30,9 +30,9 @@ export class Web3SideChainClient<T_CONFIG> {
         config.child.defaultConfig = config.child.defaultConfig || {} as any;
         this.config = config as any;
 
-        const Web3Client = Web3;
+        const web3Client = Web3Client;
 
-        if (!Web3Client) {
+        if (!web3Client) {
             throw new Error("Web3Client is not set");
         }
 
@@ -40,8 +40,8 @@ export class Web3SideChainClient<T_CONFIG> {
             this.resolution = utils.UnstoppableDomains;
         }
 
-        this.parent = new (Web3Client as any)(config.parent.provider, this.logger);
-        this.child = new (Web3Client as any)(config.child.provider, this.logger);
+        this.parent = new (web3Client as any)(config.parent.provider, this.logger);
+        this.child = new (web3Client as any)(config.child.provider, this.logger);
 
         this.logger.enableLog(config.log);
 
