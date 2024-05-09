@@ -23,6 +23,7 @@ export abstract class BaseWeb3Client {
     abstract getTransactionReceipt(transactionHash: string): Promise<ITransactionReceipt>;
     // abstract extend(property: string, methods: IMethod[])
 
+    abstract eigenGetBlock(blockHashOrBlockNumber): Promise<IBlock>;
     abstract getBlock(blockHashOrBlockNumber): Promise<IBlock>;
     abstract getBlockWithTransaction(blockHashOrBlockNumber): Promise<IBlockWithTransaction>;
     abstract hexToNumber(value: any): number;

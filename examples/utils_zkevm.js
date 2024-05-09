@@ -5,7 +5,7 @@ const { ZkEvmClient, use } = require('../dist/eigen.node')
 const SCALING_FACTOR = new bn(10).pow(new bn(18))
 const { Web3ClientPlugin } = require('@maticnetwork/maticjs-web3')
 
-use(Web3ClientPlugin)
+// use(Web3ClientPlugin)
 
 const privateKey = config.user1.privateKey
 const userAddress = config.user1.address
