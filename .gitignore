@@ -12,5 +12,4 @@ dist
 config.json
 .nuxt
 docs
-maticjs-web3/node_modules
 package-lock.json
