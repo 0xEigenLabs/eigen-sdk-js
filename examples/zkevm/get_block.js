@@ -5,9 +5,9 @@ const execute = async () => {
   let blockNum = 1;
   let isParaent = true
   let block = await client.getBlock(blockNum, isParaent)
-  let eigenBlock = await client.eigenGetBlock(blockNum, isParaent)
-  
   console.log("block", block);
+  
+  let eigenBlock = await client.eigenGetBlock(blockNum, isParaent)
   console.log("eigenBlock", eigenBlock)
 }
 execute().then(() => {
