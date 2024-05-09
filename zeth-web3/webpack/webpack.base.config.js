@@ -3,7 +3,7 @@ const copyPlugin = require('copy-webpack-plugin')
 const SmartBannerPlugin = require('smart-banner-webpack-plugin');
 const banner = require('./licence');
 
-const libraryName = 'matic-web3'
+const libraryName = 'zeth-web3'
 exports.libraryName = libraryName;
 let mode = process.env.NODE_ENV
 const isProd = mode === 'production'

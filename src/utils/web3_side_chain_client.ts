@@ -4,7 +4,7 @@ import { ABIManager } from "../utils";
 import { Logger } from "./logger";
 import { utils } from "..";
 
-import { Web3Client as Web3} from "../../maticjs-web3/src/web3"
+import { Web3Client as Web3} from "../../zeth-web3/src/web3"
 
 const chainIdToConfigPath = {
     1: 'Main',

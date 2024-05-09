@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "cd maticjs-web3 && npm i && cd .. && npm run build:dev",
+    "build": "cd zeth-web3 && npm i && cd .. && npm run build:dev",
     "build:link": "npm run build && npm link",
     "build:webpack": "webpack --config webpack/webpack.all.config.js",
     "build:pack": "npm run clean && npm run build:dev && npm pack",

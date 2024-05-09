@@ -1,5 +1,5 @@
 import { ITransactionWriteResult } from "@maticnetwork/maticjs";
-import { web3ReceiptToMaticReceipt } from "../utils";
+import { web3ReceiptToZethReceipt } from "../utils";
 import { doNothing } from "./do_nothing";
 
 export class TransactionWriteResult implements ITransactionWriteResult {
@@ -20,7 +20,7 @@ export class TransactionWriteResult implements ITransactionWriteResult {
         });
         this.getReceipt = () => {
             return receiptPromise.then(receipt => {
-                return web3ReceiptToMaticReceipt(receipt);
+                return web3ReceiptToZethReceipt(receipt);
             });
         };
 

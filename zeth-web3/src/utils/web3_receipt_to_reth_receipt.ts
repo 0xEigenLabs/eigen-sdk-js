@@ -1,7 +1,7 @@
 import { ITransactionReceipt } from "@maticnetwork/maticjs";
 
 
-export const web3ReceiptToMaticReceipt = (receipt: any) => {
+export const web3ReceiptToZethReceipt = (receipt: any) => {
     return {
         blockHash: receipt.blockHash,
         blockNumber: receipt.blockNumber,

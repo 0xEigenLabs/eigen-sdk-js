@@ -2,7 +2,7 @@ import { BaseBigNumber } from "@maticnetwork/maticjs";
 import BN from "bn.js";
 import Web3 from "web3";
 
-export class MaticBigNumber extends BaseBigNumber {
+export class EigenBigNumber extends BaseBigNumber {
     private bn_: BN;
 
     constructor(value) {
@@ -13,7 +13,7 @@ export class MaticBigNumber extends BaseBigNumber {
     }
 
     static isBN(value) {
-        if (value instanceof MaticBigNumber) {
+        if (value instanceof EigenBigNumber) {
             return true;
         }
         return BN.isBN(value);
@@ -32,35 +32,35 @@ export class MaticBigNumber extends BaseBigNumber {
     }
 
     // static from(value) {
-    //     return new MaticBigNumber(value);
+    //     return new EigenBigNumber(value);
     // }
 
     add(value: BaseBigNumber) {
         const bn = this.bn_.add(
             new BN(value.toString())
         );
-        return new MaticBigNumber(bn);
+        return new EigenBigNumber(bn);
     }
 
     sub(value: BaseBigNumber) {
         const bn = this.bn_.sub(
             new BN(value.toString())
         );
-        return new MaticBigNumber(bn);
+        return new EigenBigNumber(bn);
     }
 
     mul(value: BaseBigNumber) {
         const bn = this.bn_.mul(
             new BN(value.toString())
         );
-        return new MaticBigNumber(bn);
+        return new EigenBigNumber(bn);
     }
 
     div(value: BaseBigNumber) {
         const bn = this.bn_.div(
             new BN(value.toString())
         );
-        return new MaticBigNumber(bn);
+        return new EigenBigNumber(bn);
     }
 
     lte(value: BaseBigNumber) {

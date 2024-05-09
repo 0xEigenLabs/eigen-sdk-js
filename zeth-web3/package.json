@@ -1,7 +1,6 @@
 {
-  "name": "@maticnetwork/maticjs-web3",
+  "name": "zeth-web3",
   "version": "1.0.4",
-  "description": "web3.js plugin for matic.js",
   "main": "dist/npm.export.js",
   "types": "dist/ts/index.d.ts",
   "scripts": {
@@ -18,16 +17,8 @@
     "test": "npm run build:pack && cd test && npm run install:lib:test",
     "debug": "npm run build:pack && cd test && npm run install:lib:debug"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maticnetwork/maticjs-web3.git"
-  },
   "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/maticnetwork/maticjs-web3/issues"
-  },
-  "homepage": "https://github.com/maticnetwork/maticjs-web3#readme",
   "dependencies": {
     "web3": "^1.8.0"
   },

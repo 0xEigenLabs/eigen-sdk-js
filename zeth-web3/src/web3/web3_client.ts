@@ -4,7 +4,7 @@ import { Transaction } from "web3/eth/types";
 import { AbstractProvider } from "web3-core";
 import { doNothing, TransactionWriteResult } from "../helpers";
 import { BaseWeb3Client, Logger, IBlockWithTransaction, IJsonRpcRequestPayload, IJsonRpcResponse, ITransactionRequestConfig, ITransactionData, ITransactionReceipt, ERROR_TYPE, IError } from "@maticnetwork/maticjs";
-import { maticTxRequestConfigToWeb3, web3ReceiptToMaticReceipt, web3TxToMaticTx } from "../utils";
+import { zethTxRequestConfigToWeb3, web3ReceiptToZethReceipt, web3TxToZethTx } from "../utils";
 
 export class Web3Client extends BaseWeb3Client {
     private web3_: Web3;
@@ -18,14 +18,14 @@ export class Web3Client extends BaseWeb3Client {
 
     read(config: ITransactionRequestConfig) {
         return this.web3_.eth.call(
-            maticTxRequestConfigToWeb3(config)
+            zethTxRequestConfigToWeb3(config)
         );
     }
 
     write(config: ITransactionRequestConfig) {
         return new TransactionWriteResult(
             this.web3_.eth.sendTransaction(
-                maticTxRequestConfigToWeb3(config)
+                zethTxRequestConfigToWeb3(config)
             )
         );
     }
@@ -41,7 +41,7 @@ export class Web3Client extends BaseWeb3Client {
 
     estimateGas(config: ITransactionRequestConfig) {
         return this.web3_.eth.estimateGas(
-            maticTxRequestConfigToWeb3(config)
+            zethTxRequestConfigToWeb3(config)
         );
     }
 
@@ -69,14 +69,14 @@ export class Web3Client extends BaseWeb3Client {
     getTransaction(transactionHash: string) {
         return this.web3_.eth.getTransaction(transactionHash).then(data => {
             this.ensureTransactionNotNull_(data);
-            return web3TxToMaticTx(data);
+            return web3TxToZethTx(data);
         });
     }
 
     getTransactionReceipt(transactionHash: string): Promise<ITransactionReceipt> {
         return this.web3_.eth.getTransactionReceipt(transactionHash).then(data => {
             this.ensureTransactionNotNull_(data);
-            return web3ReceiptToMaticReceipt(data);
+            return web3ReceiptToZethReceipt(data);
         });
     }
 
@@ -96,7 +96,7 @@ export class Web3Client extends BaseWeb3Client {
         return this.web3_.eth.getBlock(blockHashOrBlockNumber, true).then(result => {
             const blockData: IBlockWithTransaction = result as any;
             blockData.transactions = result.transactions.map(tx => {
-                return web3TxToMaticTx(tx);
+                return web3TxToZethTx(tx);
             });
             return blockData;
         });

@@ -1,13 +1,13 @@
 import { IPlugin } from "@maticnetwork/maticjs";
 import Web3 from "web3";
-import { MaticBigNumber } from "./utils";
+import { EigenBigNumber } from "./utils";
 import { Web3Client } from "./web3";
 
 export class Web3ClientPlugin implements IPlugin {
-    setup(matic) {
-        matic.utils.Web3Client = Web3Client;
-        matic.utils.BN = MaticBigNumber;
-        matic.utils.isBN = (value) => {
+    setup(zeth) {
+        zeth.utils.Web3Client = Web3Client;
+        zeth.utils.BN = EigenBigNumber;
+        zeth.utils.isBN = (value) => {
             return Web3.utils.isBN(value);
         };
     }

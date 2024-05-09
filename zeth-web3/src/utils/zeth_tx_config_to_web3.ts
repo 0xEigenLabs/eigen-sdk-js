@@ -2,7 +2,7 @@ import { ITransactionRequestConfig } from "@maticnetwork/maticjs";
 import Web3 from "web3";
 import { TransactionConfig } from "web3-core";
 
-export const maticTxRequestConfigToWeb3 = (config: ITransactionRequestConfig = {}) => {
+export const zethTxRequestConfigToWeb3 = (config: ITransactionRequestConfig = {}) => {
     const toHex = Web3.utils.toHex;
     return {
         chainId: toHex(config.chainId) as any,
