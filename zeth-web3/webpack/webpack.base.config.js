@@ -3,13 +3,13 @@ const copyPlugin = require('copy-webpack-plugin')
 const SmartBannerPlugin = require('smart-banner-webpack-plugin');
 const banner = require('./licence');
 
-const libraryName = 'Eigen'
+const libraryName = 'zeth-web3'
 exports.libraryName = libraryName;
 let mode = process.env.NODE_ENV
 const isProd = mode === 'production'
 exports.isProd = isProd;
 
-console.log('build running for mode', mode);
+console.log('build runing for mode', mode);
 exports.default = {
     mode,
     devtool: 'source-map',
@@ -17,7 +17,7 @@ exports.default = {
     target: 'web',
     output: {
         path: path.join(__dirname, "./../dist"),
-        filename: `${libraryName.toLowerCase()}.umd${isProd ? '.min' : ''}.js`,
+        filename: `${libraryName}.umd${isProd ? '.min' : ''}.js`,
         library: libraryName,
         libraryTarget: 'umd',
         // libraryExport: 'default',
@@ -30,20 +30,12 @@ exports.default = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
-	    {
-                test: /\.js$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                        ]
-                    }
-                }
-            }
         ],
     },
-   
+    externals: {
+        web3: 'web3',
+        '@maticnetwork/maticjs': '@maticnetwork/maticjs'
+    },
     resolve: {
         modules: [path.resolve(__dirname, 'src'), 'node_modules'],
         extensions: ['.json', '.js', '.ts', 'tsx'],

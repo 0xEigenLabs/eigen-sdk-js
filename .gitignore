@@ -12,3 +12,4 @@ dist
 config.json
 .nuxt
 docs
+package-lock.json

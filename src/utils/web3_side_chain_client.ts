@@ -4,6 +4,8 @@ import { ABIManager } from "../utils";
 import { Logger } from "./logger";
 import { utils } from "..";
 
+import { Web3Client } from "../../zeth-web3/src/web3";
+
 const chainIdToConfigPath = {
     1: 'Main',
     5: 'Main',
@@ -28,9 +30,9 @@ export class Web3SideChainClient<T_CONFIG> {
         config.child.defaultConfig = config.child.defaultConfig || {} as any;
         this.config = config as any;
 
-        const Web3Client = utils.Web3Client;
+        const web3Client = Web3Client;
 
-        if (!Web3Client) {
+        if (!web3Client) {
             throw new Error("Web3Client is not set");
         }
 
@@ -38,8 +40,8 @@ export class Web3SideChainClient<T_CONFIG> {
             this.resolution = utils.UnstoppableDomains;
         }
 
-        this.parent = new (Web3Client as any)(config.parent.provider, this.logger);
-        this.child = new (Web3Client as any)(config.child.provider, this.logger);
+        this.parent = new (web3Client as any)(config.parent.provider, this.logger);
+        this.child = new (web3Client as any)(config.child.provider, this.logger);
 
         this.logger.enableLog(config.log);
 
@@ -67,6 +69,24 @@ export class Web3SideChainClient<T_CONFIG> {
 
     get zkEvmContracts() {
         return this.getConfig("zkEVM.Contracts");
+    }
+
+    getBlock(blockNum: any, isParent?: boolean){
+        if(isParent){
+            return this.parent.getBlock(blockNum);
+        }
+        else{
+            return this.child.getBlock(blockNum);
+        }
+    }
+
+    eigenGetBlock(blockNum: any, isParent?: boolean){
+        if(isParent){
+            return this.parent.eigenGetBlock(blockNum);
+        }
+        else{
+            return this.child.eigenGetBlock(blockNum);
+        }
     }
 
     isEIP1559Supported(chainId: number): boolean {
