@@ -89,6 +89,14 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
     eigenGetBlock(blockNum: any, isParent?: boolean){
         return this.client.eigenGetBlock(blockNum, isParent);
     }
+
+    getBlockByNumber(blockNum: any, isParent?: boolean){
+        return this.client.getBlockByNumber(blockNum, isParent);
+    }
+
+    getBatchProof(blockNum: any, isParent?: boolean){
+        return this.client.getBatchProof(blockNum, isParent);
+    }
     
     private getContracts_() {
         return {

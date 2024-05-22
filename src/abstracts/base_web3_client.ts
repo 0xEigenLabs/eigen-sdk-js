@@ -32,6 +32,9 @@ export abstract class BaseWeb3Client {
     abstract getAccounts(): string[];
     abstract signTypedData(signer: string, typedData: object): string;
 
+    abstract getBlockByNumber(blockNumber): Promise<IBlock>;
+    abstract getBatchProof(blockNumber): Promise<IBlock>;
+
     getRootHash?(startBlock: number, endBlock: number) {
         return this.sendRPCRequest({
             jsonrpc: '2.0',
@@ -59,5 +62,4 @@ export abstract class BaseWeb3Client {
     abstract encodeParameters(params: any[], types: any[]): string;
     abstract decodeParameters(hexString: string, types: any[]): any[];
     abstract etheriumSha3(...value): string;
-
 }

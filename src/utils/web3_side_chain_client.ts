@@ -89,6 +89,24 @@ export class Web3SideChainClient<T_CONFIG> {
         }
     }
 
+    getBlockByNumber(blockNum: any, isParent?: boolean){
+        if(isParent){
+            return this.parent.getBlockByNumber(blockNum);
+        }
+        else{
+            return this.child.getBlockByNumber(blockNum);
+        }
+    }
+
+    getBatchProof(blockNum: any, isParent?: boolean){
+        if(isParent){
+            return this.parent.getBatchProof(blockNum);
+        }
+        else{
+            return this.child.getBatchProof(blockNum);
+        }
+    }
+
     isEIP1559Supported(chainId: number): boolean {
         return this.getConfig(`${chainIdToConfigPath[chainId]}.SupportsEIP1559`);
     }
