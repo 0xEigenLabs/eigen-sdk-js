@@ -4,11 +4,8 @@ const execute = async () => {
   const client = await getZkEvmClient();
   let blockNum = 1;
   let isParaent = false
-  let block = await client.getBlock(blockNum, isParaent)
+  let block = await client.getBlockByNumber(blockNum, isParaent)
   console.log("block", block);
-  
-  let eigenBlock = await client.eigenGetBlock(blockNum, isParaent)
-  console.log("eigenBlock", eigenBlock)
 }
 execute().then(() => {
 }).catch(err => {

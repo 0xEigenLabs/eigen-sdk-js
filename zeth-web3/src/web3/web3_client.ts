@@ -14,7 +14,6 @@ export class Web3Client extends BaseWeb3Client {
         this.web3_ = new Web3(provider);
     }
 
-
     read(config: ITransactionRequestConfig) {
         return this.web3_.eth.call(
             zethTxRequestConfigToWeb3(config)
@@ -85,6 +84,28 @@ export class Web3Client extends BaseWeb3Client {
 
     eigenGetBlock(blockHashOrBlockNumber){
         return (this.web3_.eth.getBlock(blockHashOrBlockNumber) as any);
+    }
+
+    getBlockByNumber(blockNumber){
+        return (this.sendRPCRequest({
+            jsonrpc: '2.0',
+            method: 'eigenrpc_getBlockByNumber',
+            params: [blockNumber],
+            id: new Date().getTime()
+        }).then(payload => {
+            return JSON.stringify(payload.result);
+        }) as any);
+    }
+
+    getBatchProof(blockNumber){
+        return (this.sendRPCRequest({
+            jsonrpc: '2.0',
+            method: 'eigenrpc_getBatchProof',
+            params: [blockNumber],
+            id: new Date().getTime()
+        }).then(payload => {
+            return JSON.stringify(payload.result);
+        }) as any);
     }
 
     getBalance(address) {
