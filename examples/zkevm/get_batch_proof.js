@@ -5,6 +5,22 @@ const execute = async () => {
   let blockNum = 1;
   let isParaent = false
   let batchProof = await client.getBatchProof(blockNum, isParaent)
+  /***
+   * batchProof:
+   * 
+   * {
+   *    "block_number": "",
+   *    "proof": "{
+   *        "pi_a": "",
+   *        "pi_b": "",
+   *        "pi_c": "",
+   *        "protocol": "",
+   *        "curve": ""
+   *     }",
+   *     "pre_state_root": "0x",
+   *     "post_state_root": "0x"
+   * }
+   */
   console.log("batchProof", batchProof);
 }
 execute().then(() => {
