@@ -32,8 +32,8 @@ export abstract class BaseWeb3Client {
     abstract getAccounts(): string[];
     abstract signTypedData(signer: string, typedData: object): string;
 
-    abstract getBlockByNumber(blockNumber): Promise<IBlock>;
-    abstract getBatchProof(blockNumber): Promise<IBlock>;
+    abstract getBlockByNumber(blockNumber): string;
+    abstract getBatchProof(blockNumber): string;
 
     getRootHash?(startBlock: number, endBlock: number) {
         return this.sendRPCRequest({

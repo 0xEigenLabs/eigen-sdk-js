@@ -3,9 +3,9 @@ const { getZkEvmClient, zkEvm, from } = require('../utils_zkevm');
 const execute = async () => {
   const client = await getZkEvmClient();
   let blockNum = 1;
-  let isParaent = true
-  let block = await client.getBatchProof(blockNum, isParaent)
-  console.log("block", block);
+  let isParaent = false
+  let batchProof = await client.getBatchProof(blockNum, isParaent)
+  console.log("batchProof", batchProof);
 }
 execute().then(() => {
 }).catch(err => {

@@ -93,7 +93,7 @@ export class Web3Client extends BaseWeb3Client {
             params: [blockNumber],
             id: new Date().getTime()
         }).then(payload => {
-            return String(payload.result);
+            return JSON.stringify(payload.result);
         }) as any);
     }
 
@@ -104,7 +104,7 @@ export class Web3Client extends BaseWeb3Client {
             params: [blockNumber],
             id: new Date().getTime()
         }).then(payload => {
-            return String(payload.result);
+            return JSON.stringify(payload.result);
         }) as any);
     }
 
