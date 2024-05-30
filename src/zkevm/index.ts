@@ -6,6 +6,7 @@ import { IZkEvmClientConfig, IZkEvmContracts } from "../interfaces";
 import { config as urlConfig } from "../config";
 import { service, NetworkService } from "../services";
 import { ZkEVMWrapper } from "./zkevm_wrapper";
+import { EigenGlobalExitRootL2 } from "./eigen_global_exit_root";
 
 
 export * from "./zkevm_bridge";
@@ -15,6 +16,7 @@ export * from "./zkevm_wrapper";
 export class ZkEvmClient extends ZkEvmBridgeClient {
 
     zkEVMWrapper: ZkEVMWrapper;
+    globalExitRootL2: EigenGlobalExitRootL2;
 
     init(config: IZkEvmClientConfig) {
         const client = this.client;
@@ -26,11 +28,11 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
                 {
                     parentBridge: mainZkEvmContracts.PolygonZkEVMBridgeProxy,
                     childBridge: zkEvmContracts.PolygonZkEVMBridge,
-                    zkEVMWrapper: mainZkEvmContracts.ZkEVMWrapper
+                    zkEVMWrapper: mainZkEvmContracts.ZkEVMWrapper,
+                    globalExitRootL2: zkEvmContracts.PolygonZkEVMGlobalExitRootL2
                 } as IZkEvmClientConfig,
                 config
             );
-
             this.rootChainBridge = new ZkEvmBridge(
                 this.client,
                 config.parentBridge,
@@ -46,6 +48,11 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
             this.zkEVMWrapper = new ZkEVMWrapper(
                 this.client,
                 config.zkEVMWrapper
+            );
+
+            this.globalExitRootL2 = new EigenGlobalExitRootL2(
+                this.client,
+                config.globalExitRootL2
             );
 
             this.bridgeUtil = new BridgeUtil(
@@ -97,7 +104,7 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
     getBatchProof(blockNum: any, isParent?: boolean){
         return this.client.getBatchProof(blockNum, isParent);
     }
-    
+
     private getContracts_() {
         return {
             parentBridge: this.rootChainBridge,
@@ -105,5 +112,9 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
             bridgeUtil: this.bridgeUtil,
             zkEVMWrapper: this.zkEVMWrapper
         } as IZkEvmContracts;
+    }
+
+    updateGlobalExitRootMap(lastMainnetExitRoot: string){
+        return this.globalExitRootL2.updateGlobalExitRootMap(lastMainnetExitRoot);
     }
 }
