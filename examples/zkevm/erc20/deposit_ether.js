@@ -1,10 +1,10 @@
 const { getZkEvmClient, zkEvm, from } = require('../../utils_zkevm');
-const ether = require("ethers")
 
 const execute = async () => {
   const client = await getZkEvmClient();
   const etherToken = client.erc20(zkEvm.parent.ether, true);
-  const result = await etherToken.deposit("20000000000000000", from);
+  //const amount = ethers.utils.parseEther("0.1")
+  const result = await etherToken.deposit("1000000000000000000", from);
 
   const txHash = await result.getTransactionHash();
   console.log("txHash", txHash);

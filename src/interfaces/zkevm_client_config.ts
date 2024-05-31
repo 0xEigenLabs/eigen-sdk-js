@@ -4,4 +4,5 @@ export interface IZkEvmClientConfig extends IBaseClientConfig {
     parentBridge?: string;
     childBridge?: string;
     zkEVMWrapper?: string;
+    globalExitRootL2?: string;
 }

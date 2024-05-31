@@ -9,7 +9,7 @@ export class ZkEvmBridge extends BaseToken<IZkEvmClientConfig> {
     constructor(client_: Web3SideChainClient<IZkEvmClientConfig>, address: string, isParent: boolean) {
         super({
             address: address,
-            name: 'PolygonZkEVMBridge',
+            name: 'EigenBridge',
             bridgeType: 'zkevm',
             isParent: isParent
         }, client_);

@@ -1,5 +1,6 @@
 import { BaseWeb3Client, Converter, TYPE_AMOUNT } from "..";
 import { EmptyBigNumber } from "../implementation";
+import { ZethBigNumber } from "../../zeth-web3/src/utils";
 
 export * from "./use";
 export * from "./event_bus";
@@ -22,6 +23,6 @@ export * from "./zkevm_bridge_client";
 export const utils = {
     converter: Converter,
     Web3Client: BaseWeb3Client,
-    BN: EmptyBigNumber,
+    BN: ZethBigNumber,
     UnstoppableDomains: Object
 };
