@@ -63,7 +63,6 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
                 if (urlConfig.zkEvmBridgeService[urlConfig.zkEvmBridgeService.length - 1] !== '/') {
                     urlConfig.zkEvmBridgeService += '/';
                 }
-                urlConfig.zkEvmBridgeService += 'api/zkevm/';
                 service.zkEvmNetwork = new NetworkService(urlConfig.zkEvmBridgeService);
             }
 
@@ -115,6 +114,8 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
     }
 
     updateGlobalExitRootMap(lastMainnetExitRoot: string){
-        return this.globalExitRootL2.updateGlobalExitRootMap(lastMainnetExitRoot);
+        return this.globalExitRootL2.updateGlobalExitRootMap(lastMainnetExitRoot).then(res => {
+            return res;
+        });
     }
 }
